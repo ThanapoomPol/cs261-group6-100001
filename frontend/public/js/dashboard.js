@@ -17,3 +17,15 @@ async function fetchUser() {
 		console.error("Error:", error);
 	}
 }
+
+function logout() {
+	if (confirm("ยืนยันการออกจากระบบ?")) {
+		fetch("/logout")
+			.then((response) => {
+				if (response.redirected) {
+					window.location.href = response.url;
+				}
+			})
+			.catch((error) => console.error("Error logging out:", error));
+	}
+}
